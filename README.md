@@ -6,6 +6,7 @@
 
 Exercises for the Haskell Beginners 2022 course. The course itself can be found here:
 
+
 * [Haskell Beginners 2022 Course](https://github.com/haskell-beginners-2022/course-plan)
 
 This repository contains a complete Haskell project. The project
