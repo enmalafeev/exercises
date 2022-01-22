@@ -232,7 +232,14 @@ The algorithm of merge sort is the following:
 [1,2,3]
 -}
 mergeSort :: [Int] -> [Int]
-mergeSort = error "TODO"
+mergeSort = mergeAll . map (:[]) 
+  where
+    mergeAll [] = []
+    mergeAll [t] = t
+    mergeAll xs = mergeAll (mergePairs xs)
+
+    mergePairs (x:y:xs) = merge x y : mergePairs xs
+    mergePairs xs = xs
 
 
 {- | Haskell is famous for being a superb language for implementing
