@@ -77,8 +77,13 @@ return the removed element.
 >>> removeAt 10 [1 .. 5]
 (Nothing,[1,2,3,4,5])
 -}
--- removeAt :: Int -> [a] -> (Maybe a, [a])
-removeAt = error "todo"
+removeAt :: Int -> [a] -> (Maybe a, [a])
+removeAt _ [] = (Nothing, [])
+removeAt 0 (x : xs) = (Just x, xs)
+removeAt n list = case splitAt n list of
+    ([], after) -> (Nothing, after)
+    (before, []) -> (Nothing, before)
+    (before, x : xs) -> (Just x, before ++ xs)
 
 {- | Write a function that takes a list of lists and returns only
 lists of even lengths.
