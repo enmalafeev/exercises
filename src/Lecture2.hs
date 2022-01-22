@@ -209,7 +209,13 @@ verify that.
 [1,2,3,4,7]
 -}
 merge :: [Int] -> [Int] -> [Int]
-merge = error "TODO"
+merge [] [] = []
+merge [] xs = xs
+merge xs [] = xs
+merge (x:xs) (y:ys) = if x < y
+                        then x : merge xs (y : ys)
+                        else y : merge (x : xs) ys
+
 
 {- | Implement the "Merge Sort" algorithm in Haskell. The @mergeSort@
 function takes a list of numbers and returns a new list containing the
