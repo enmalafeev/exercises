@@ -195,8 +195,9 @@ False
 True
 -}
 isIncreasing :: [Int] -> Bool
-isIncreasing = error "TODO"
-
+isIncreasing [] = True
+isIncreasing [_] = True
+isIncreasing (x : y : xs) = x < y && isIncreasing (y:xs)
 {- | Implement a function that takes two lists, sorted in the
 increasing order, and merges them into new list, also sorted in the
 increasing order.
