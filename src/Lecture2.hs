@@ -47,6 +47,9 @@ zero, you can stop calculating product and return 0 immediately.
 >>> lazyProduct [4, 3, 7]
 84
 -}
+
+-- Hi, Dmitrii. Sorry, I don't solve all exercises. I'll try to solve them later and send you PR. Thank you.
+
 lazyProduct :: [Int] -> Int
 lazyProduct = go 1
     where
