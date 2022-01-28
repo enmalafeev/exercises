@@ -52,8 +52,6 @@ makeSnippet limit text = take limit ("Description: " ++ text) ++ "..."
 sumOfSquares :: Int -> Int -> Int
 sumOfSquares x y = x ^ (2 :: Integer) + y ^ (2 :: Integer)
 
-<<<<<<< HEAD
-=======
 -- | Implement a function that returns the last digit of a given number.
 --
 -- >>> lastDigit 42
@@ -63,7 +61,6 @@ sumOfSquares x y = x ^ (2 :: Integer) + y ^ (2 :: Integer)
 --
 -- 🕯 HINT: use the @mod@ functionn
 
->>>>>>> finish exercises
 -- DON'T FORGET TO SPECIFY THE TYPE IN HERE
 lastDigit :: Int -> Int
 lastDigit n = abs n `mod` 10
