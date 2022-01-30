@@ -95,8 +95,12 @@ weekday to the second.
 >>> daysTo Friday Wednesday
 5
 -}
-daysTo = error "TODO"
-
+daysTo :: Weekday -> Weekday -> Int
+daysTo before after
+  | difference < 0 = mod difference 7
+  | otherwise = difference
+    where 
+      difference = fromEnum after - fromEnum before
 {-
 
 In the following block of tasks you need to implement 'Semigroup'
