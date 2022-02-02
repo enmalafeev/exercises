@@ -111,13 +111,13 @@ have a lawful 'Monoid' instance.
 
 newtype Gold = Gold
     { unGold :: Int
-    } deriving (Show, Eq)
+    } deriving (Show, Eq, Num)
 
 -- | Addition of gold coins.
 instance Semigroup Gold where
-
-
+    (<>) = (+)
 instance Monoid Gold where
+  mempty = Gold 0
 
 
 {- | A reward for completing a difficult quest says how much gold
@@ -132,10 +132,10 @@ data Reward = Reward
     } deriving (Show, Eq)
 
 instance Semigroup Reward where
-
+    (Reward g1 s1) <> (Reward g2 s2) = Reward (g1 <> g2)  (s1 || s2)
 
 instance Monoid Reward where
-
+    mempty = Reward 0 False
 
 {- | 'List1' is a list that contains at least one element.
 -}
