@@ -147,7 +147,7 @@ instance Semigroup (List1 a) where
     (<>) (List1 a as) (List1 b bs) = List1 a (as <> (b:bs))
 
 {- | Does 'List1' have the 'Monoid' instance? If no then why?
--- Maybe it was empty list, but I'm not sure. :)
+-- No, because for concatanation two lists no elements with empty list
 instance Monoid (List1 a) where
 -}
 
@@ -159,17 +159,21 @@ data Treasure a
     | SomeTreasure a
     deriving (Show, Eq)
 
-  {- | When you append multiple treasures for fighting multiple
+{- | When you append multiple treasures for fighting multiple
   monsters, you should get a combined treasure and not just the first
   (or last one).
 
 🕯 HINT: You may need to add additional constraints to this instance
   declaration.
 -}
--- instance Semigroup (Treasure a) where
-  
+instance (Semigroup  a) => Semigroup (Treasure a) where
+    (<>) NoTreasure a = a
+    (<>) b NoTreasure = b
+    (<>) (SomeTreasure a) (SomeTreasure b) = SomeTreasure (a <> b)
+    
 
--- instance Monoid (Treasure a) where
+instance (Monoid  a) =>  Monoid (Treasure a) where
+    mempty = SomeTreasure mempty
 
 
 {- | Abstractions are less helpful if we can't write functions that
