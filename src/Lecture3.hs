@@ -34,7 +34,7 @@ module Lecture3
     , apply
     ) where
 
-
+import Data.List
 -- $setup
 -- >>> import Data.Semigroup
 
@@ -192,7 +192,8 @@ together only different elements.
 Product {getProduct = 6}
 
 -}
-appendDiff3 = error "TODO"
+appendDiff3 :: (Semigroup a, Eq a) => a -> a -> a -> a
+appendDiff3 a b c = foldl1' (<>) . nub $ [a, b, c]
 
 {-
 
