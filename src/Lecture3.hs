@@ -111,11 +111,11 @@ have a lawful 'Monoid' instance.
 
 newtype Gold = Gold
     { unGold :: Int
-    } deriving (Show, Eq, Num)
+    } deriving (Show, Eq)
 
--- | Addition of gold coins.
+-- -- | Addition of gold coins.
 instance Semigroup Gold where
-    (<>) = (+)
+    (<>) (Gold a) (Gold b) = Gold (a + b)
 instance Monoid Gold where
   mempty = Gold 0
 
@@ -132,10 +132,10 @@ data Reward = Reward
     } deriving (Show, Eq)
 
 instance Semigroup Reward where
-    (Reward g1 s1) <> (Reward g2 s2) = Reward (g1 <> g2)  (s1 || s2)
+    (<>) (Reward g1 s1) (Reward g2 s2) = Reward (g1 <> g2) (s1 || s2)
 
 instance Monoid Reward where
-    mempty = Reward 0 False
+    mempty = Reward (Gold 0) False
 
 {- | 'List1' is a list that contains at least one element.
 -}
@@ -144,10 +144,10 @@ data List1 a = List1 a [a]
 
 -- | This should be list append.
 instance Semigroup (List1 a) where
-
+    (<>) (List1 a as) (List1 b bs) = List1 a (as <> (b:bs))
 
 {- | Does 'List1' have the 'Monoid' instance? If no then why?
-
+-- Maybe it was empty list, but I'm not sure. :)
 instance Monoid (List1 a) where
 -}
 
@@ -159,17 +159,17 @@ data Treasure a
     | SomeTreasure a
     deriving (Show, Eq)
 
-{- | When you append multiple treasures for fighting multiple
-monsters, you should get a combined treasure and not just the first
-(or last one).
+  {- | When you append multiple treasures for fighting multiple
+  monsters, you should get a combined treasure and not just the first
+  (or last one).
 
 🕯 HINT: You may need to add additional constraints to this instance
   declaration.
 -}
-instance Semigroup (Treasure a) where
+-- instance Semigroup (Treasure a) where
+  
 
-
-instance Monoid (Treasure a) where
+-- instance Monoid (Treasure a) where
 
 
 {- | Abstractions are less helpful if we can't write functions that
