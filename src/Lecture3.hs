@@ -174,7 +174,7 @@ instance (Semigroup  a) => Semigroup (Treasure a) where
     
 
 instance (Monoid  a) =>  Monoid (Treasure a) where
-    mempty = SomeTreasure mempty
+    mempty = NoTreasure
 
 
 {- | Abstractions are less helpful if we can't write functions that
@@ -278,4 +278,6 @@ Just [8,9,10]
 [8,20,3]
 
 -}
-apply = error "TODO"
+
+apply :: Functor f => a -> f (a -> b) -> f b
+apply a = fmap (\x -> x a)
