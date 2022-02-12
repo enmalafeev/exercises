@@ -1,4 +1,5 @@
 {-# LANGUAGE InstanceSigs #-}
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 
 {- |
 Module                  : Lecture3
@@ -225,8 +226,18 @@ types that can have such an instance.
 -- instance Foldable Weekday where
 -- instance Foldable Gold where
 -- instance Foldable Reward where
--- instance Foldable List1 where
--- instance Foldable Treasure where
+instance Foldable List1 where
+    foldr :: (a -> b -> b) -> b -> List1 a -> b
+    foldr f acc (List1 x xs) = f x (foldr f acc xs)
+instance Foldable Treasure where
+    foldr :: (a -> b -> b) -> b -> Treasure a -> b
+    foldr _ acc NoTreasure = acc
+    foldr f acc (SomeTreasure x) = f x (foldr f acc (SomeTreasure x))
+
+    foldMap :: Monoid m => (a -> m) -> Treasure a -> m
+    foldMap _ NoTreasure = mempty 
+    foldMap f (SomeTreasure x) = f x
+
 
 {-
 
