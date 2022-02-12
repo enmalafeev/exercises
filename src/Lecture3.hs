@@ -252,8 +252,14 @@ types that can have such an instance.
 -- instance Functor Weekday where
 -- instance Functor Gold where
 -- instance Functor Reward where
--- instance Functor List1 where
--- instance Functor Treasure where
+instance Functor List1 where
+    fmap :: (a -> b) -> List1 a -> List1 b
+    fmap f (List1 x xs) = List1 (f x) (fmap f xs)
+
+instance Functor Treasure where
+    fmap :: (a -> b) -> Treasure a -> Treasure b
+    fmap _ NoTreasure = NoTreasure
+    fmap f (SomeTreasure x)  = SomeTreasure $ f x
 
 {- | Functions are first-class values in Haskell. This means that they
 can be even stored inside other data types as well!

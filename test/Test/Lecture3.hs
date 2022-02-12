@@ -83,11 +83,11 @@ lecture3Spec = describe "Lecture 3" $ do
         it "Treasure" $ do
             lawsCheck (foldableLaws genTreasureWith) `shouldReturn` True
 
-    -- describe "Laws: Functor" $ do
-    --     it "List1" $ do
-    --         lawsCheck (functorLaws genList1With) `shouldReturn` True
-    --     it "Treasure" $ do
-    --         lawsCheck (functorLaws genTreasureWith) `shouldReturn` True
+    describe "Laws: Functor" $ do
+        it "List1" $ do
+            lawsCheck (functorLaws genList1With) `shouldReturn` True
+        it "Treasure" $ do
+            lawsCheck (functorLaws genTreasureWith) `shouldReturn` True
 
 
 genSmallInt :: Gen Int
