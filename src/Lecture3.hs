@@ -167,13 +167,13 @@ data Treasure a
 🕯 HINT: You may need to add additional constraints to this instance
   declaration.
 -}
-instance (Semigroup  a) => Semigroup (Treasure a) where
+instance (Semigroup a) => Semigroup (Treasure a) where
     (<>) NoTreasure a = a
     (<>) b NoTreasure = b
     (<>) (SomeTreasure a) (SomeTreasure b) = SomeTreasure (a <> b)
     
 
-instance (Monoid  a) =>  Monoid (Treasure a) where
+instance (Monoid a) => Monoid (Treasure a) where
     mempty = NoTreasure
 
 
@@ -232,7 +232,7 @@ instance Foldable List1 where
 instance Foldable Treasure where
     foldr :: (a -> b -> b) -> b -> Treasure a -> b
     foldr _ acc NoTreasure = acc
-    foldr f acc (SomeTreasure x) = f x (foldr f acc (SomeTreasure x))
+    foldr f acc (SomeTreasure x) = f x acc
 
     foldMap :: Monoid m => (a -> m) -> Treasure a -> m
     foldMap _ NoTreasure = mempty 
