@@ -35,7 +35,7 @@ module Lecture3
     , apply
     ) where
 
-import Data.List
+import Data.List (foldl1', nub)
 -- $setup
 -- >>> import Data.Semigroup
 
